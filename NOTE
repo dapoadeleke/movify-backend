@@ -1,0 +1,40 @@
+LOAN DISBURSEMENT TRANSACTION
+		            BANK	CUSTOMER
+---------------------------------
+1. Charge Applied   DEBIT	CREDIT
+2. Interest	        DEBIT	CREDIT
+3. Principal	    DEBIT	CREDIT
+4. Charge Paid      CREDIT  DEBIT
+
+LOAN REPAYMENT
+1. Repayment        CREDIT  DEBIT
+
+LOAN WRITE OFF
+1. Write Off        CREDIT  DEBIT
+
+INTEREST WAIVER
+1. Interest Waiver  CREDIT  DEBIT
+
+
+
+DEPOSIT
+1. Deposit           CREDIT     DEBIT
+
+WITHDRAWAL
+1. Withdrawal        DEBIT      CREDIT
+
+
+
+
+
+
+
+
+
+SAMPLE REPAYMENT SCHEDULE
+#   PRINCIPAL   INTEREST    EXTRA    WAIVER     TOTAL
+1       2,000        500        0         0     2,500
+2       2,000        500        0         0     2,500
+3       2,000        500      200         0     2,500
+4       2,000        500        0         0     2,500
+5       1,500        500        0         0     2,000
