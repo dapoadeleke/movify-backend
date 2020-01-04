@@ -1,7 +1,9 @@
-package com.movify.model.repository;
+package com.movify.model.repository.impl;
 
 import com.movify.model.User;
+import com.movify.model.repository.UserRepository;
 import io.ebean.EbeanServer;
+
 import javax.inject.Inject;
 
 public class UserRepositoryImpl implements UserRepository {
@@ -23,5 +25,4 @@ public class UserRepositoryImpl implements UserRepository {
     public User findByEmail(String email) {
         return this.store.find(User.class).where().eq("email", email).findOne();
     }
-
 }

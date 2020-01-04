@@ -1,6 +1,7 @@
 package com.movify;
 
 import com.movify.controller.AuthController;
+import com.movify.controller.MovieController;
 import com.movify.dto.ServiceResponse;
 import com.movify.utils.CustomException;
 import com.movify.utils.Message;
@@ -70,6 +71,7 @@ public class App extends Jooby {
 
         get("/", () -> "movify web service");
         use(AuthController.class);
+        use(MovieController.class);
 
         err((req, rsp, err) -> {
             Throwable cause = err.getCause();
