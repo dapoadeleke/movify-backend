@@ -1,8 +1,6 @@
 package com.movify.service.impl;
 
-import com.movify.dto.DataTableRequest;
-import com.movify.dto.MovieDTO;
-import com.movify.dto.ServiceResponse;
+import com.movify.dto.*;
 import com.movify.model.*;
 import com.movify.model.repository.MovieRepository;
 import com.movify.service.MovieService;
@@ -44,35 +42,16 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public ServiceResponse list(DataTableRequest req) {
         ServiceResponse res = new ServiceResponse(Message.ERROR, Message.GENERAL_ERROR_MESSAGE);
-//        if(req.getDepartmentId() != null) {
-//            if (this.departmentRepository.findById(req.getDepartmentId()) == null) {
-//                return res.setMessage(String.format(Message.NOT_FOUND, "Department"));
-//            }
-//        }
-//
-//        if(req.getWorkgroupId() != null) {
-//            if (this.workgroupRepository.findById(req.getWorkgroupId()) == null) {
-//                return res.setMessage(String.format(Message.NOT_FOUND, "Workgroup"));
-//            }
-//        }
-//
-//        if(req.getRoleId() != null) {
-//            if (this.roleRepository.findById(req.getRoleId()) == null) {
-//                return res.setMessage(String.format(Message.NOT_FOUND, "Role"));
-//            }
-//        }
-//
-//        req.setCompanyId(initiator.getCompany().getId());
-//
-//        DataTableListResponse listResponse = new DataTableListResponse();
-//
-//        PagedList<Customer> data = this.customerRepository.data(req);
-//        listResponse.setData(data.getList().stream().map(this::generateCustomerMiniDTO).collect(Collectors.toList()));
-//        listResponse.setDraw(req.getOffset());
-//        listResponse.setLength(data.getPageSize());
-//        listResponse.setRecordsFiltered(data.getTotalCount());
-//        listResponse.setRecordsTotal(data.getTotalCount());
-//        res.setCode(Message.SUCCESS).setMessage(Message.GENERAL_SUCCESS_MESSAGE).setData(listResponse);
+
+        DataTableListResponse listResponse = new DataTableListResponse();
+
+        PagedList<Movie> data = this.movieRepository.data(req);
+        listResponse.setData(data.getList().stream().map(this::generateMovieMiniDtoFromMovie).collect(Collectors.toList()));
+        listResponse.setDraw(req.getOffset());
+        listResponse.setLength(data.getPageSize());
+        listResponse.setRecordsFiltered(data.getTotalCount());
+        listResponse.setRecordsTotal(data.getTotalCount());
+        res.setCode(Message.SUCCESS).setMessage(Message.GENERAL_SUCCESS_MESSAGE).setData(listResponse);
         return res;
     }
 
@@ -91,6 +70,18 @@ public class MovieServiceImpl implements MovieService {
         dto.setGenres(movie.getGenres().stream().map(Genre::getName).collect(Collectors.toList()));
         dto.setLanguages(movie.getLanguages().stream().map(Language::getName).collect(Collectors.toList()));
 
+        return dto;
+    }
+
+    private MovieMiniDTO generateMovieMiniDtoFromMovie(Movie movie) {
+        MovieMiniDTO dto  = new MovieMiniDTO();
+        dto.setId(movie.getId());
+        dto.setSlug(movie.getSlug());
+        dto.setTitle(movie.getTitle());
+        dto.setTagline(movie.getTagline());
+        dto.setReleaseDate(movie.getReleaseDate().toString());
+        dto.setVoteCount(movie.getVoteCount());
+        dto.setGenres(movie.getGenres().stream().map(Genre::getName).collect(Collectors.toList()));
         return dto;
     }
 
