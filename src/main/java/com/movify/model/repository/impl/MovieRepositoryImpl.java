@@ -4,12 +4,14 @@ import com.movify.dto.DataTableRequest;
 import com.movify.model.Movie;
 import com.movify.model.User;
 import com.movify.model.repository.MovieRepository;
+import com.movify.utils.Utility;
 import io.ebean.EbeanServer;
 import io.ebean.ExpressionList;
 import io.ebean.PagedList;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Inject;
+import java.util.stream.Collectors;
 
 public class MovieRepositoryImpl implements MovieRepository {
 

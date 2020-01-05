@@ -22,7 +22,14 @@ public class Utility {
     * Generate a slug from a string
      */
     public String slugify(String str) {
-        return str.toLowerCase().replace(" ", "-");
+        return str.toLowerCase()
+                .replace("'", "")
+                .replace(":", "-")
+                .replace(".", "")
+                .replace(",", "")
+                .replace("?", "")
+                .replace("&", "")
+                .replace(" ", "-");
     }
 
 

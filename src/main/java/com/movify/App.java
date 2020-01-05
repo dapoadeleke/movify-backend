@@ -3,8 +3,12 @@ package com.movify;
 import com.movify.controller.AuthController;
 import com.movify.controller.MovieController;
 import com.movify.dto.ServiceResponse;
+import com.movify.model.User;
+import com.movify.security.SecurityConstants;
+import com.movify.service.CacheService;
 import com.movify.utils.CustomException;
 import com.movify.utils.Message;
+import org.apache.commons.lang3.StringUtils;
 import org.jooby.Jooby;
 import org.jooby.RequestLogger;
 import org.jooby.Status;
@@ -49,27 +53,22 @@ public class App extends Jooby {
         });
 
         before("api/v1/internal/**", (req, res) -> {
-//            ServiceResponse response = new ServiceResponse(Message.ERROR, Message.GENERAL_ERROR_MESSAGE);
-//            CacheService cache = require(CacheService.class);
-//            String token = "";
-//            try {
-//                token = "toyotaavalon2009"; //req.header(SecurityConstants.HEADER_STRING).value();
-//            }catch (Exception e) {}
-//
-//            ApplicationUser applicationUser = cache.getApplicationUser(token);
-//            if (StringUtils.isBlank(token) || applicationUser == null) {
-//                response.setCode(Message.UNAUTORIZED).setMessage(Message.UNAUTORIZED_MESSAGE);
-//                res.status(Status.UNAUTHORIZED).send(response);
-//            }
-//
-//            if (applicationUser != null && applicationUser.isPasswordChangeRequired()) {
-//                response.setCode(Message.PASSWORD_CHANGE_REQUIRED).setMessage(Message.SET_NEW_PASSWORD_MESSAGE);
-//                res.status(Status.UNAUTHORIZED).send(response);
-//            }
+            ServiceResponse response = new ServiceResponse(Message.ERROR, Message.GENERAL_ERROR_MESSAGE);
+            CacheService cache = require(CacheService.class);
+            String token = "";
+            try {
+                token = req.header(SecurityConstants.HEADER_STRING).value();
+            }catch (Exception e) {}
+
+            User applicationUser = cache.getUser(token);
+            if (StringUtils.isBlank(token) || applicationUser == null) {
+                response.setCode(Message.UNAUTORIZED).setMessage(Message.UNAUTORIZED_MESSAGE);
+                res.status(Status.UNAUTHORIZED).send(response);
+            }
 
         });
 
-        get("/", () -> "movify web service");
+        get("/", () -> "Movify web service");
         use(AuthController.class);
         use(MovieController.class);
 
