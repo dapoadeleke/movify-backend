@@ -20,7 +20,7 @@ public class Movie {
     String tagline;
     LocalDate releaseDate;
     int runtime;
-    int voteCount;
+    double voteAverage;
     @ManyToMany
     List<Genre> genres;
     @ManyToMany
@@ -29,5 +29,4 @@ public class Movie {
     List<Country> countries;
     @ManyToMany
     List<Language> languages;
-    LocalDateTime dateCreated;
 }

@@ -34,8 +34,8 @@ public class MovieRepositoryImpl implements MovieRepository {
 
         if(req.getFilter() != null && StringUtils.isNotBlank(req.getFilter())) {
             expressionList = expressionList
-                    .or().ilike("title", "%" + req.getFilter() + "%")
-                    .or().ilike("tagline", "%" + req.getFilter() + "%");
+                    .or().ilike("title", "%" + req.getFilter() + "%");
+//                    .or().ilike("tagline", "%" + req.getFilter() + "%");
         }
 
         if(req.getSortField() != null && StringUtils.isNotBlank(req.getSortField())) {

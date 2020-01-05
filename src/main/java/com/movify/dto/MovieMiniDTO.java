@@ -15,6 +15,6 @@ public class MovieMiniDTO {
     String title;
     String tagline;
     String releaseDate;
-    int voteCount;
+    double voteAverage;
     List<String> genres;
 }

@@ -17,7 +17,7 @@ public class MovieDTO {
     String overview;
     String releaseDate;
     int runtime;
-    int voteCount;
+    double voteAverage;
     List<String> companies;
     List<String> countries;
     List<String> genres;

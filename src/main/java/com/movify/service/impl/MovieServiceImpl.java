@@ -64,7 +64,7 @@ public class MovieServiceImpl implements MovieService {
         dto.setOverview(movie.getOverview());
         dto.setReleaseDate(movie.getReleaseDate().toString());
         dto.setRuntime(movie.getRuntime());
-        dto.setVoteCount(movie.getVoteCount());
+        dto.setVoteAverage(movie.getVoteAverage());
         dto.setCompanies(movie.getCompanies().stream().map(Company::getName).collect(Collectors.toList()));
         dto.setCountries(movie.getCountries().stream().map(Country::getName).collect(Collectors.toList()));
         dto.setGenres(movie.getGenres().stream().map(Genre::getName).collect(Collectors.toList()));
@@ -78,9 +78,9 @@ public class MovieServiceImpl implements MovieService {
         dto.setId(movie.getId());
         dto.setSlug(movie.getSlug());
         dto.setTitle(movie.getTitle());
-        dto.setTagline(movie.getTagline());
+        dto.setTagline(movie.getOverview());
         dto.setReleaseDate(movie.getReleaseDate().toString());
-        dto.setVoteCount(movie.getVoteCount());
+        dto.setVoteAverage(movie.getVoteAverage());
         dto.setGenres(movie.getGenres().stream().map(Genre::getName).collect(Collectors.toList()));
         return dto;
     }
