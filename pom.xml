@@ -154,6 +154,13 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.jooby</groupId>
+      <artifactId>jooby-apitool</artifactId>
+      <version>1.6.6</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -162,6 +169,17 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.jooby</groupId>
+        <artifactId>jooby-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>apitool</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

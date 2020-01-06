@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.jooby.Jooby;
 import org.jooby.RequestLogger;
 import org.jooby.Status;
+import org.jooby.apitool.ApiTool;
 import org.jooby.ebean.Ebeanby;
 import org.jooby.guava.GuavaCache;
 import org.jooby.guava.GuavaSessionStore;
@@ -46,6 +47,11 @@ public class App extends Jooby {
         use(GuavaCache.newCache());
         session(GuavaSessionStore.class);
         use(new CommonsEmail());
+        use(new ApiTool()
+            .swagger(new ApiTool.Options("/swagger")
+                .redoc()
+            )
+        );
 
 
         before("*", (req, res) -> {

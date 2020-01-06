@@ -7,6 +7,7 @@ import com.movify.enums.Status;
 import com.movify.model.User;
 import com.movify.model.repository.UserRepository;
 import com.movify.security.Hash;
+import com.movify.security.SecurityConstants;
 import com.movify.service.AuthService;
 import com.movify.service.CacheService;
 import com.movify.service.EmailService;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class AuthServiceImpl implements AuthService {
 
@@ -81,7 +83,7 @@ public class AuthServiceImpl implements AuthService {
         user.setLastLoggedIn(LocalDateTime.now());
 
         LoginServiceResponse loginResponse = new LoginServiceResponse();
-        String token = "toyotaavalon2009"; // TODO Please free token when we're ready SecurityConstants.TOKEN_PREFIX.concat(UUID.randomUUID().toString());
+        String token = SecurityConstants.TOKEN_PREFIX.concat(UUID.randomUUID().toString());
         loginResponse.setId(user.getId());
         loginResponse.setToken(token);
         loginResponse.setFullName(user.getFullName());
