@@ -3,6 +3,6 @@ node {
         git 'https://github.com/adelekeoladapo/movify-backend.git'
     }
     stage('Compile and Package') {
-        sh './mvn package'
+        sh 'mvn package'
     }
 }
